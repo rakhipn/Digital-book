@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Edit Product Details</h1>
+<div class="card-body">
+    <h4 class="card-title">Product Details</h4>
+    <p class="card-description"></p>
+    <form class="forms-sample" method="POST" action="{% url 'updateproduct' dataid=data.id %}"
+          enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputName1">Name</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name"
+                   value="{{data.Name}}">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputName1">Author</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Author" name="author"
+                   value="{{data.Author}}">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputName1">Language</label>
+            <input type="text" class="form-control" id="exampleInputName1" placeholder="Language" name="name"
+                   value="{{data.Language}}">
+        </div>
+
+
+        <div class="form-group">
+            <label for="exampleInputPrice3">Price</label>
+            <input type="text" class="form-control" id="exampleInputPrice3" placeholder="Price" name="price"
+                   value="{{data.Price}}">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPrice3">Pages</label>
+            <input type="text" class="form-control" id="exampleInputPrice3" placeholder="Pages" name="price"
+                   value="{{data.Pages}}">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleSelectCategory">Category</label>
+            <select class="form-control" id="exampleSelectCategory" placeholder="Category" name="category"
+                    value="{{data.Category}}">
+                {% for i in da %}
+                <option>{{i.Name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>File upload</label>
+            <input type="file" name="image" class="file-upload-default">
+            <div class="input-group col-xs-12">
+                <input type="file" class="form-control file-upload-info" placeholder="Upload Image" name="image">
+                <img src="{{data.Image.url}}" width="100px" height="50px">
+                <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                          </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleTextarea1">Description</label>
+            <textarea class="form-control" id="exampleTextarea1" rows="4" name="description"
+                      value="{{data.Description}}"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Update</button>
+        <button class="btn btn-dark">Cancel</button>
+    </form>
+</div>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row">
+
+
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Display Cart Details</h4>
+                <p class="card-description"><code></code>
+                </p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+
+                            <th>PRODUCTNAME</th>
+                            <th>QUANTITY</th>
+                            <th> TOTALPRICE</th>
+                            <th>OPTIONS</th>
+
+                        </tr>
+                        </thead>
+                        {% for i in data %}
+                        <tbody>
+                        <tr>
+                            <td>{{i.Pname}}</td>
+                            <td>{{i.Quantity}}</td>
+                            <td>{{i.Totalprice}}</td>
+
+
+                            <td>
+                                <form action="{% url 'deletecart' dataid=i.id %}">
+                                    <button type="submit" class="btn btn-primary mr-2">Delete</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock %}
